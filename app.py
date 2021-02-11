@@ -8,7 +8,7 @@ from flask_restful import Api
 from flask import Flask, request, Response
 from flask_cors import CORS
 from flask import render_template
-from decouple import config
+#from decouple import config
 import db
 from views import posts, comments
 
@@ -41,13 +41,14 @@ def list_posts():
 @app.route('/')
 def list_posts():
     # token_from_auth0 = request.args.get('token')
-    token_from_auth0 = '1234'
-    real_token = config('AUTH0_TEST')
-
-    if token_from_auth0 == real_token:
-        return render_template('get-posts.html', logged_in=True)
-    else:
-        return render_template('get-posts.html', logged_in=False)
+    # token_from_auth0 = '1234'
+    # real_token = config('AUTH0_TEST')
+    #
+    # if token_from_auth0 == real_token:
+    #     return render_template('get-posts.html', logged_in=True)
+    # else:
+    #     return render_template('get-posts.html', logged_in=False)
+    return render_template('get-posts.html')
 
 
 @app.route('/add-post/')
