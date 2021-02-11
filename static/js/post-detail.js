@@ -155,7 +155,7 @@ const renderPost = (ev) => {
         <p>
             <strong>Author: </strong>${activePost.author}
         </p>
-        <button class="btn" id="render-comment" type="submit">Comment</button>
+
     `;
     document.querySelector('.post').innerHTML = template;
     document.querySelector('#render-comment').onclick = renderComment;
@@ -250,6 +250,7 @@ const initializePage = () => {
     // add button event handler (right-hand corner:
     document.querySelector('#edit-button').onclick = renderForm;
     document.querySelector('#delete-button').onclick = deletePost;
+    document.querySelector('#render-comment').onclick = renderComment;
 
 };
 
