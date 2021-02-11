@@ -14,7 +14,7 @@ from views import posts, comments
 
 from dotenv import load_dotenv
 load_dotenv()
-import os
+
 app = Flask(__name__)
 CORS(app)
 db.init_database_connection(app)
@@ -25,6 +25,7 @@ api = Api(app)
 # def home_page():
 #     return 'This is your API Homepage'
 
+<<<<<<< HEAD
 ## for user management, change render_template
 
 
@@ -32,6 +33,11 @@ api = Api(app)
 def list_posts():
     return render_template('get-posts.html')
 
+=======
+@app.route('/')
+def list_posts():
+    return render_template('get-posts.html')
+>>>>>>> parent of d797f98 (update blog post methods)
 
 @app.route('/add-post/')
 def create_post():
