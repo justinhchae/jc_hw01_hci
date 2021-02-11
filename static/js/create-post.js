@@ -19,7 +19,7 @@ const createPost = (ev) => {
     ev.preventDefault();
 };
 
-const showConfirmation = (data) => {
+const showConfirmation = (data) => {ƒ
     console.log('response from the server:', data);
     if (data.message && data.id) {
         document.querySelector('#post-form').classList.toggle("hide");

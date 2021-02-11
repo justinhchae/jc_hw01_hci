@@ -17,6 +17,88 @@ const getPost = () => {
         });
 };
 
+const getComments = () => {
+    fetch('/api/comments/?post_id' + id)
+        .then(response => response.json())
+        .then(displayComments); // this is a callback function
+};
+
+const createComment = () => {
+    alert();
+    const data = {
+        post: activePost.id,
+        comment: document.querySelector('#comment-content').value,
+        author: document.querySelector('#comment-author').value
+
+    };
+    console.log(data);
+
+    fetch('/api/comments', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(showConfirmationComment);
+
+    // this line overrides the default form functionality:
+    ev.preventDefault();
+};
+
+
+const showConfirmationComment = (data) => {ƒ
+    console.log('response from the server:', data);
+    if (data.message && data.id) {
+        document.querySelector('#post-form').classList.toggle("hide");
+        document.querySelector('#confirmation').classList.toggle("hide");
+    }
+};
+
+const deleteComment = (commentID) => {
+    const doIt = confirm('Are you sure you want to delete this comment?');
+    if (!doIt) {
+        return;
+    }
+    fetch('/api/comments/' + commentID + '/', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // navigate back to main page:
+        window.location.href = '/';
+    });
+    ev.preventDefault()
+};
+
+
+
+const displayComments = (data) => {
+    const entries = [];
+    let htmlComments = '';
+
+    for (const comment of data) {
+
+       if (comment.post_id == activePost.id)
+       {
+            htmlComments += `<section class="comment">
+            <p>${comment.comment}</p>
+            <strong>Author </strong>${comment.author}
+            <button onClick="deleteComment('${comment.id}')" class="btn" id="delete-comment" type="submit">Delete</button>
+            
+          </section>`;
+        }
+    }
+    document.querySelector('#comments').innerHTML = htmlComments;
+
+};
+
+
 // updates the post:
 const updatePost = (ev) => {
     const data = {
@@ -74,12 +156,38 @@ const renderPost = (ev) => {
         <p>
             <strong>Author: </strong>${activePost.author}
         </p>
+        <button class="btn" id="render-comment" type="submit">Comment</button>
     `;
     document.querySelector('.post').innerHTML = template;
+    document.querySelector('#render-comment').onclick = renderComment;
     toggleVisibility('view');
 
     // prevent built-in form submission:
     if (ev) { ev.preventDefault(); }
+};
+
+const renderComment = () => {
+
+    const htmlSnippet = `
+        <div class="input-section">
+            <label for="author">Comment Author</label>
+            <input type="text" name="author" id="comment-author" value="author name">
+        </div>
+        <div class="input-section">
+            <label for="comment">Comment</label>
+            <textarea name="comment" id="comment-content">comment</textarea>
+        </div>
+        <button onClick="createComment()" class="btn btn-main" id="make-comment" type="submit">Save</button>
+        <button class="btn" id="cancel" type="submit">Cancel</button>
+     
+    `;
+
+    // after you've updated the DOM, add the event handlers:
+    document.querySelector('#post-form').innerHTML = htmlSnippet;
+    document.querySelector('#make-comment').onclick = createComment;
+    document.querySelector('#cancel').onclick = renderPost;
+
+    toggleVisibility('edit');
 };
 
 // creates the HTML to display the editable form:
@@ -99,6 +207,7 @@ const renderForm = () => {
         </div>
         <button class="btn btn-main" id="save" type="submit">Save</button>
         <button class="btn" id="cancel" type="submit">Cancel</button>
+        
     `;
 
     // after you've updated the DOM, add the event handlers:
@@ -138,9 +247,11 @@ const showConfirmation = () => {
 const initializePage = () => {
     // get the post from the server:
     getPost();
+    getComments();
     // add button event handler (right-hand corner:
     document.querySelector('#edit-button').onclick = renderForm;
     document.querySelector('#delete-button').onclick = deletePost;
+
 };
 
 initializePage();

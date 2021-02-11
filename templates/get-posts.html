@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Tester</title>
+        <title>getposts</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
         <link rel="stylesheet" href="/static/css/style.css">
     </head>
@@ -8,6 +8,15 @@
         <nav>
             <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
         </nav>
+
+        {{ logged_in }}
+
+        {%  if not logged_in %}
+        <p>Show Login Screen</p>
+
+        {% else %}
+
+
         <main>
             <!-- 1. Buttons -->
             <section id="menu" class="align-right">
@@ -16,7 +25,12 @@
             <h1>My Blog Posts</h1>
             <!-- posts get populated here -->
             <div id="posts"></div>
+            <div id="comments">
+
+            </div>
         </main>
+
+        {% endif %}
 
 
 

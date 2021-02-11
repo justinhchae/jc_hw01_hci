@@ -1,7 +1,15 @@
 const getPosts = () => {
     fetch('/api/posts')
         .then(response => response.json())
-        .then(displayPosts);
+        .then(displayPosts); // this is a callback function
+};
+
+const displayPosts = (data) => {
+    const entries = [];
+    for (const post of data) {
+        entries.push(toHTMLElement(post));
+    }
+    document.querySelector('#posts').innerHTML = entries.join('\n');
 };
 
 const toHTMLElement = (post) => {
@@ -28,12 +36,6 @@ const toHTMLElement = (post) => {
     `;
 };
 
-const displayPosts = (data) => {
-    const entries = [];
-    for (const post of data) {
-        entries.push(toHTMLElement(post));
-    }
-    document.querySelector('#posts').innerHTML = entries.join('\n');
-};
+
 
 getPosts();
