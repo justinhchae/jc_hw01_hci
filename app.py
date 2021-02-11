@@ -8,11 +8,7 @@ from flask_restful import Api
 from flask import Flask, request, Response
 from flask_cors import CORS
 from flask import render_template
-<<<<<<< HEAD
-#from decouple import config
-=======
 
->>>>>>> 5be426c4c9f63a75fd46962a7dd78ff0b2786368
 import db
 from views import posts, comments
 
@@ -29,30 +25,13 @@ api = Api(app)
 # def home_page():
 #     return 'This is your API Homepage'
 
-<<<<<<< HEAD
 ## for user management, change render_template
 
 
 @app.route('/')
 def list_posts():
-<<<<<<< HEAD
-    # token_from_auth0 = request.args.get('token')
-    # token_from_auth0 = '1234'
-    # real_token = config('AUTH0_TEST')
-    #
-    # if token_from_auth0 == real_token:
-    #     return render_template('get-posts.html', logged_in=True)
-    # else:
-    #     return render_template('get-posts.html', logged_in=False)
-=======
->>>>>>> 5be426c4c9f63a75fd46962a7dd78ff0b2786368
     return render_template('get-posts.html')
 
-=======
-@app.route('/')
-def list_posts():
-    return render_template('get-posts.html')
->>>>>>> parent of d797f98 (update blog post methods)
 
 @app.route('/add-post/')
 def create_post():

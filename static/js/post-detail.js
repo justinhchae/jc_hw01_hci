@@ -17,7 +17,6 @@ const getPost = () => {
         });
 };
 
-<<<<<<< HEAD
 const getComments = () => {
     fetch('/api/comments/?post_id' + id)
         .then(response => response.json())
@@ -98,9 +97,6 @@ const displayComments = (data) => {
 
 };
 
-
-=======
->>>>>>> parent of d797f98 (update blog post methods)
 // updates the post:
 const updatePost = (ev) => {
     const data = {
