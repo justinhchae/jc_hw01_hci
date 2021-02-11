@@ -8,13 +8,12 @@ from flask_restful import Api
 from flask import Flask, request, Response
 from flask_cors import CORS
 from flask import render_template
-
 import db
 from views import posts, comments
 
 from dotenv import load_dotenv
 load_dotenv()
-
+import os
 app = Flask(__name__)
 CORS(app)
 db.init_database_connection(app)
@@ -31,7 +30,6 @@ api = Api(app)
 @app.route('/')
 def list_posts():
     return render_template('get-posts.html')
-
 
 @app.route('/add-post/')
 def create_post():

@@ -97,6 +97,7 @@ const displayComments = (data) => {
 
 };
 
+
 // updates the post:
 const updatePost = (ev) => {
     const data = {
@@ -105,7 +106,7 @@ const updatePost = (ev) => {
         author: document.querySelector('#author').value
     };
     console.log(data);
-    fetch('/api/posts/' + activePost.id + '/', { 
+    fetch('/api/posts/' + activePost.id + '/', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -118,7 +119,7 @@ const updatePost = (ev) => {
             renderPost();
             showConfirmation();
         });
-    
+
     // this line overrides the default form functionality:
     ev.preventDefault();
 };
@@ -128,7 +129,7 @@ const deletePost = (ev) => {
     if (!doIt) {
         return;
     }
-    fetch('/api/posts/' + activePost.id + '/', { 
+    fetch('/api/posts/' + activePost.id + '/', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -205,6 +206,7 @@ const renderForm = () => {
         </div>
         <button class="btn btn-main" id="save" type="submit">Save</button>
         <button class="btn" id="cancel" type="submit">Cancel</button>
+        
     `;
 
     // after you've updated the DOM, add the event handlers:
@@ -215,11 +217,11 @@ const renderForm = () => {
 };
 
 const formatDate = (date) => {
-    const options = { 
-        weekday: 'long', year: 'numeric', 
-        month: 'long', day: 'numeric' 
+    const options = {
+        weekday: 'long', year: 'numeric',
+        month: 'long', day: 'numeric'
     };
-    return new Date(date).toLocaleDateString('en-US', options); 
+    return new Date(date).toLocaleDateString('en-US', options);
 };
 
 // handles what is visible and what is invisible on the page:
@@ -248,6 +250,7 @@ const initializePage = () => {
     // add button event handler (right-hand corner:
     document.querySelector('#edit-button').onclick = renderForm;
     document.querySelector('#delete-button').onclick = deletePost;
+
 };
 
 initializePage();
