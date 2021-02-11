@@ -24,7 +24,6 @@ const getComments = () => {
 };
 
 const createComment = () => {
-    alert();
     const data = {
         post: activePost.id,
         comment: document.querySelector('#comment-content').value,
