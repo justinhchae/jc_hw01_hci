@@ -250,7 +250,7 @@ const initializePage = () => {
     // add button event handler (right-hand corner:
     document.querySelector('#edit-button').onclick = renderForm;
     document.querySelector('#delete-button').onclick = deletePost;
-    document.querySelector('#render-comment').onclick = renderComment;
+    document.querySelector('#render-comment').onclick = renderForm;
 
 };
 
