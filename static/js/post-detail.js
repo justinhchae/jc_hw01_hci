@@ -17,6 +17,7 @@ const getPost = () => {
         });
 };
 
+<<<<<<< HEAD
 const getComments = () => {
     fetch('/api/comments/?post_id' + id)
         .then(response => response.json())
@@ -24,7 +25,6 @@ const getComments = () => {
 };
 
 const createComment = () => {
-    alert();
     const data = {
         post: activePost.id,
         comment: document.querySelector('#comment-content').value,
@@ -99,6 +99,8 @@ const displayComments = (data) => {
 };
 
 
+=======
+>>>>>>> parent of d797f98 (update blog post methods)
 // updates the post:
 const updatePost = (ev) => {
     const data = {
@@ -156,38 +158,12 @@ const renderPost = (ev) => {
         <p>
             <strong>Author: </strong>${activePost.author}
         </p>
-        <button class="btn" id="render-comment" type="submit">Comment</button>
     `;
     document.querySelector('.post').innerHTML = template;
-    document.querySelector('#render-comment').onclick = renderComment;
     toggleVisibility('view');
 
     // prevent built-in form submission:
     if (ev) { ev.preventDefault(); }
-};
-
-const renderComment = () => {
-
-    const htmlSnippet = `
-        <div class="input-section">
-            <label for="author">Comment Author</label>
-            <input type="text" name="author" id="comment-author" value="author name">
-        </div>
-        <div class="input-section">
-            <label for="comment">Comment</label>
-            <textarea name="comment" id="comment-content">comment</textarea>
-        </div>
-        <button onClick="createComment()" class="btn btn-main" id="make-comment" type="submit">Save</button>
-        <button class="btn" id="cancel" type="submit">Cancel</button>
-     
-    `;
-
-    // after you've updated the DOM, add the event handlers:
-    document.querySelector('#post-form').innerHTML = htmlSnippet;
-    document.querySelector('#make-comment').onclick = createComment;
-    document.querySelector('#cancel').onclick = renderPost;
-
-    toggleVisibility('edit');
 };
 
 // creates the HTML to display the editable form:
@@ -207,7 +183,6 @@ const renderForm = () => {
         </div>
         <button class="btn btn-main" id="save" type="submit">Save</button>
         <button class="btn" id="cancel" type="submit">Cancel</button>
-        
     `;
 
     // after you've updated the DOM, add the event handlers:
@@ -247,11 +222,9 @@ const showConfirmation = () => {
 const initializePage = () => {
     // get the post from the server:
     getPost();
-    getComments();
     // add button event handler (right-hand corner:
     document.querySelector('#edit-button').onclick = renderForm;
     document.querySelector('#delete-button').onclick = deletePost;
-
 };
 
 initializePage();
