@@ -218,6 +218,7 @@ const showConfirmation = () => {
 const initializePage = () => {
     // get the post from the server:
     getPost();
+    getComments();
     // add button event handler (right-hand corner:
     document.querySelector('#edit-button').onclick = renderForm;
     document.querySelector('#delete-button').onclick = deletePost;
