@@ -7,12 +7,8 @@ flask run
 from flask_restful import Api
 from flask import Flask, request, Response
 from flask_cors import CORS
-<<<<<<< HEAD
 from flask import render_template
 from decouple import config
-=======
-
->>>>>>> parent of 06c6d5d (add gui templates)
 import db
 from views import posts, comments
 
@@ -25,7 +21,6 @@ db.init_database_connection(app)
 api = Api(app)
 
 # connect your routes to your app:
-<<<<<<< HEAD
 # @app.route('/')
 # def home_page():
 #     return 'This is your API Homepage'
@@ -65,11 +60,6 @@ def create_post():
 def get_single_post():
     return render_template('post-detail.html')
 
-=======
-@app.route('/')
-def home_page():
-    return 'This is your API Homepage'
->>>>>>> parent of 06c6d5d (add gui templates)
 
 # routes from other files:
 posts.initialize_routes(api)
