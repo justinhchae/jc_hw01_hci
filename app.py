@@ -40,15 +40,6 @@ def list_posts():
 
 @app.route('/')
 def list_posts():
-    # token_from_auth0 = request.args.get('token')
-    # token_from_auth0 = '1234'
-    # real_token = config('AUTH0_TEST')
-    #
-    # if token_from_auth0 == real_token:
-    #     return render_template('get-posts.html', logged_in=True)
-    # else:
-    #     return render_template('get-posts.html', logged_in=False)
-
     return render_template('get-posts.html')
 
 
