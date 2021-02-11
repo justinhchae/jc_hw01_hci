@@ -8,7 +8,7 @@ from flask_restful import Api
 from flask import Flask, request, Response
 from flask_cors import CORS
 from flask import render_template
-from decouple import config
+
 import db
 from views import posts, comments
 
@@ -27,16 +27,6 @@ api = Api(app)
 
 ## for user management, change render_template
 
-"""
-def list_posts():
-    token_from_auth0 = request.args.get('token')
-    real_token = os.environ.get('TOKEN')
-    if token_from_auth0 == real_token:
-        return render_template('get-posts.html', logged_in=True)
-    else:
-        return render_template('get-posts.html', logged_in=False)
-
-"""
 
 @app.route('/')
 def list_posts():
